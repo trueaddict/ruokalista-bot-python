@@ -1,6 +1,3 @@
-# access token: 926759597:AAHxu95K0wEexYYOqATOyNpGV6STZkN5gLU
-# remove before github!!!!
-
 import logging
 import time
 import os
@@ -12,19 +9,6 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import json
 import requests
 
-""" TODO ominaisuudet
-    - Päivän menun tulostaminen sekä muotoilu
-    - Menun lähettäminen telegram kanavalle
-    - Lisätä loput ravintolat
-    - Päivän menun automaattinen lähettäminen aina klo 11
-    - Ehkä: Ruokalistan lähettäminen sijainnin mukaan
-    TODO koodi
-    - Selkeät aliohjelmat
-    - Kommentointi
-    - Virhekäsittely
-"""
-token = '926759597:AAHxu95K0wEexYYOqATOyNpGV6STZkN5gLU'
-
 #logging
 logging.basicConfig(format='%(astime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -32,8 +16,8 @@ logger = logging.getLogger()
 
 
 #mode switch
-mode = "dev"#os.getenv("MODE")
-TOKEN = token#os.getenv("TOKEN")
+mode = os.getenv("MODE")
+TOKEN = os.getenv("TOKEN")
 if mode == "dev":
     def run(updater):
         updater.start_polling()
@@ -139,7 +123,7 @@ def help(update, context):
 
 if __name__ == '__main__':
     logger.info("Starting bot")
-    updater = Updater(token, use_context=True) #os.getenv("TOKEN")
+    updater = Updater(os.getenv("TOKEN"), use_context=True) 
     
     updater.dispatcher.add_handler(CommandHandler("start", start))
 
