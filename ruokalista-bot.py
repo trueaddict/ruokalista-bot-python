@@ -92,7 +92,7 @@ def getRuokalista(url):
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
-    update.message.reply_text("Hello from Python!")
+    update.message.reply_text("Hei ja tervetuloa käyttään ruokalista bottia!\nBotti toimii vain Semman ravintoloihin\nSaat ruokalistan kutsumalla esim \piato")
 
 def help(update, context):
     """Botin helpperi"""
