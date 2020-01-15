@@ -32,8 +32,8 @@ logger = logging.getLogger()
 
 
 #mode switch
-mode = os.getenv("MODE")
-TOKEN = os.getenv("TOKEN")
+mode = "dev"#os.getenv("MODE")
+TOKEN = token#os.getenv("TOKEN")
 if mode == "dev":
     def run(updater):
         updater.start_polling()
@@ -56,14 +56,50 @@ else:
 # Haetaan webistä ruokalista ja tulostetaan se konsolille
 
 def piato(update, context):
-    viesti = getRuokalista('https://www.semma.fi/modules/json/json/Index?costNumber=1408&language=fi')
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1408&language=fi')
     update.message.reply_text(viesti)
 
 def maija(update, context):
-    viesti = getRuokalista('https://www.semma.fi/modules/json/json/Index?costNumber=1402&language=fi')
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1402&language=fi')
     update.message.reply_text(viesti)
 
-def getRuokalista(url):
+def lozzi(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1401&language=fi')
+    update.message.reply_text(viesti)
+
+def belvedere(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1404&language=fi')
+    update.message.reply_text(viesti)
+
+def syke(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1405&language=fi')
+    update.message.reply_text(viesti)
+
+def tilia(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1413&language=fi')
+    update.message.reply_text(viesti)
+
+def uno(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1414&language=fi')
+    update.message.reply_text(viesti)
+
+def ylisto(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1403&language=fi')
+    update.message.reply_text(viesti)
+
+def kvarkki(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=140301&language=fi')
+    update.message.reply_text(viesti)
+
+def rentukka(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1416&language=fi')
+    update.message.reply_text(viesti)
+
+def novelli(update, context):
+    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1409&language=fi')
+    update.message.reply_text(viesti)
+
+def getRuokalistaSemma(url):
     """Hakee ruokalistan Semman sivuilta
        return: Muotoiltu päivänruokalista"""
     # Hakee ja käsittelee json tiedoston
@@ -75,6 +111,9 @@ def getRuokalista(url):
     
     # Purkaa json-tiedostosta ruokalistan haluttuun muotoon
     viesti_tele = ""
+
+    viesti_tele += jsonL["RestaurantName"] + "\n"
+
     viikonruokalista = jsonL["MenusForDays"]
     for x in viikonruokalista:
         vrl_pvm = x["Date"]
@@ -92,7 +131,7 @@ def getRuokalista(url):
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
-    update.message.reply_text("Hei ja tervetuloa käyttään ruokalista bottia!\nBotti toimii vain Semman ravintoloihin\nSaat ruokalistan kutsumalla esim \piato")
+    update.message.reply_text("Hei ja tervetuloa käyttään ruokalista bottia!\nBotti toimii vain Semman ravintoloihin.\nSaat haluamasi ravintolan ruokalistan kutsumalla esim /piato")
 
 def help(update, context):
     """Botin helpperi"""
@@ -100,9 +139,20 @@ def help(update, context):
 
 if __name__ == '__main__':
     logger.info("Starting bot")
-    updater = Updater(token, use_context=True)
+    updater = Updater(token, use_context=True) #os.getenv("TOKEN")
     
     updater.dispatcher.add_handler(CommandHandler("start", start))
+
     updater.dispatcher.add_handler(CommandHandler("piato", piato))
+    updater.dispatcher.add_handler(CommandHandler("maija", maija))
+    updater.dispatcher.add_handler(CommandHandler("lozzi", lozzi))
+    updater.dispatcher.add_handler(CommandHandler("belvedere", belvedere))
+    updater.dispatcher.add_handler(CommandHandler("syke", syke))
+    updater.dispatcher.add_handler(CommandHandler("tilia", tilia))
+    updater.dispatcher.add_handler(CommandHandler("uno", uno))
+    updater.dispatcher.add_handler(CommandHandler("ylistö", ylisto))
+    updater.dispatcher.add_handler(CommandHandler("kvarkki", kvarkki))
+    updater.dispatcher.add_handler(CommandHandler("rentukka", rentukka))
+    updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
 
     run(updater)
