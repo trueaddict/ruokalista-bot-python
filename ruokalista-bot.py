@@ -96,7 +96,7 @@ def getRuokalistaSemma(url):
     # Purkaa json-tiedostosta ruokalistan haluttuun muotoon
     viesti_tele = ""
 
-    viesti_tele += jsonL["RestaurantName"] + "\n"
+    viesti_tele += jsonL["RestaurantName"] + "\n\n"
 
     viikonruokalista = jsonL["MenusForDays"]
     for x in viikonruokalista:
@@ -115,7 +115,7 @@ def getRuokalistaSemma(url):
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
-    update.message.reply_text("Hei ja tervetuloa käyttään ruokalista bottia!\nBotti toimii vain Semman ravintoloihin.\nSaat haluamasi ravintolan ruokalistan kutsumalla esim /piato")
+    update.message.reply_text("Hei ja tervetuloa käyttään ruokalistabottia!\nBotti toimii vain Semman ravintoloihin.\nSaat haluamasi ravintolan ruokalistan kutsumalla esim /piato")
 
 def help(update, context):
     """Botin helpperi"""
