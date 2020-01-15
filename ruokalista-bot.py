@@ -134,7 +134,7 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("syke", syke))
     updater.dispatcher.add_handler(CommandHandler("tilia", tilia))
     updater.dispatcher.add_handler(CommandHandler("uno", uno))
-    updater.dispatcher.add_handler(CommandHandler("ylistö", ylisto))
+    updater.dispatcher.add_handler(CommandHandler("ylisto", ylisto))
     updater.dispatcher.add_handler(CommandHandler("kvarkki", kvarkki))
     updater.dispatcher.add_handler(CommandHandler("rentukka", rentukka))
     updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
