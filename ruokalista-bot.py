@@ -112,6 +112,21 @@ def getRuokalistaSemma(url):
 
     return viesti_tele
 
+def ilokivi(update, context):
+    ilokivi_url = 'https://www.ilokivi.fi/ravintola/lounas'
+    htmlContent = requests.get(ilokivi_url, verify=True).text
+    html = BeautifulSoup(htmlContent, 'html.parser')
+
+    lunch_div = html.find('div', attrs={'class':'content'})
+    lunch = lunch_div.find('p')
+
+
+    for text in lunch.find_all('i'):
+        text.unwrap()
+    
+    for text in lunch.find_all('br'):
+        text.replace_with('\n\n')
+    update.message.reply_text("Ravintola Ilokivi\n" + lunch.text)
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
@@ -138,5 +153,8 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("kvarkki", kvarkki))
     updater.dispatcher.add_handler(CommandHandler("rentukka", rentukka))
     updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
+
+    updater.dispatcher.add_handler(CommandHandler("ilokivi", ilokivi))
+
 
     run(updater)
