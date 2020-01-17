@@ -3,6 +3,7 @@ import time
 import os
 import sys
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -155,6 +156,5 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
 
     updater.dispatcher.add_handler(CommandHandler("ilokivi", ilokivi))
-
 
     run(updater)
