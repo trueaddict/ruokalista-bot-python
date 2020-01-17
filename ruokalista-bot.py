@@ -131,7 +131,7 @@ def ilokivi(update, context):
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
-    update.message.reply_text("Hei ja tervetuloa käyttään ruokalistabottia!\nBotti toimii vain Semman ravintoloihin.\nSaat haluamasi ravintolan ruokalistan kutsumalla esim /piato")
+    update.message.reply_text("Hei ja tervetuloa käyttämään ruokalistabottia!\nBotti toimii Semman ravintoloihin sekä Ilokiven ravintolaan.\nSaat haluamasi ravintolan ruokalistan kutsumalla esim /piato")
 
 def help(update, context):
     """Botin helpperi"""
