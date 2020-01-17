@@ -142,6 +142,7 @@ if __name__ == '__main__':
     updater = Updater(os.getenv("TOKEN"), use_context=True) 
     
     updater.dispatcher.add_handler(CommandHandler("start", start))
+    updater.dispatcher.add_handler(CommandHandler("help", help))
 
     updater.dispatcher.add_handler(CommandHandler("piato", piato))
     updater.dispatcher.add_handler(CommandHandler("maija", maija))
