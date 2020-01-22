@@ -97,7 +97,10 @@ def getRuokalistaSemma(url):
     # Purkaa json-tiedostosta ruokalistan haluttuun muotoon
     viesti_tele = ""
 
-    viesti_tele += jsonL["RestaurantName"] + "\n\n"
+    pvm_lista = today[0].split('-')
+    today_tulostu = pvm_lista[2] + "." + pvm_lista[1] + "." + pvm_lista[0]
+
+    viesti_tele += jsonL["RestaurantName"] +" - " + today_tulostu +  "\n\n"
 
     viikonruokalista = jsonL["MenusForDays"]
     for x in viikonruokalista:
