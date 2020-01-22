@@ -130,7 +130,12 @@ def ilokivi(update, context):
     
     for text in lunch.find_all('br'):
         text.replace_with('\n\n')
-    update.message.reply_text("Ravintola Ilokivi\n" + lunch.text)
+
+    pvm_lista = datetime.now().isoformat().split('T')[0].split('-')
+    today_tulostu = pvm_lista[2] + "." + pvm_lista[1] + "." + pvm_lista[0]
+    
+    update.message.reply_text("Ravintola Ilokivi - " + today_tulostu + "\n" + lunch.text)
+    
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
