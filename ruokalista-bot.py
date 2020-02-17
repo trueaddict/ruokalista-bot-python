@@ -84,6 +84,10 @@ def novelli(update, context):
     viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1409&language=fi')
     update.message.reply_text(viesti)
 
+def fiilu(update, context):
+    viesti = getRuokalistaSemma('https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=3364&language=fi')
+    update.message.reply_text(viesti)
+
 def getRuokalistaSemma(url):
     """Hakee ruokalistan Semman sivuilta
        return: Muotoiltu päivänruokalista"""
@@ -163,6 +167,7 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("kvarkki", kvarkki))
     updater.dispatcher.add_handler(CommandHandler("rentukka", rentukka))
     updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
+    updater.dispatcher.add_handler(CommandHandler("fiilu", fiilu))
 
     updater.dispatcher.add_handler(CommandHandler("ilokivi", ilokivi))
 
