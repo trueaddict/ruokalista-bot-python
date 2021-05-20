@@ -85,7 +85,7 @@ def novelli(update, context):
     update.message.reply_text(viesti)
 
 def fiilu(update, context):
-    viesti = getRuokalistaSemma('https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=3364&language=fi')
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=3364&language=fi')
     update.message.reply_text(viesti)
 
 def getRuokalistaSemma(url):
