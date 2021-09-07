@@ -40,6 +40,8 @@ else:
 
 # Haetaan webistä ruokalista ja tulostetaan se konsolille
 
+# Jyväskylä
+
 def piato(update, context):
     viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1408&language=fi')
     update.message.reply_text(viesti)
@@ -87,6 +89,25 @@ def novelli(update, context):
 def fiilu(update, context):
     viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=3364&language=fi')
     update.message.reply_text(viesti)
+
+# Kuopio
+
+def tietoteknia(update, context):
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0439&language=fi')
+    update.message.reply_text(viesti)
+
+def snellmania(update, context):
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0437&language=fi')
+    update.message.reply_text(viesti)
+
+def canthia(update, context):
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0436&language=fi')
+    update.message.reply_text(viesti)
+
+def mediteknia(update, context):
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0442&language=fi')
+    update.message.reply_text(viesti)
+        
 
 def getRuokalistaSemma(url):
     """Hakee ruokalistan Semman sivuilta
