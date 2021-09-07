@@ -170,29 +170,29 @@ def help(update, context):
     """Botin helpperi / komennot"""
     update.message.reply_text(
         """
-        Botin komennot:\n
-            /start\n
-            /help\n
-            \n
-            Jyväskylä:\n
-            /piato\n
-            /maija\n
-            /lozzi\n
-            /belvedere\n
-            /syke\n
-            /tilia\n
-            /uno\n
-            /ylisto\n
-            /kvarkki\n
-            /rentukka\n
-            /novelli\n
-            /ilokivi\n
-            \n
-            Kuopio:\n
-            /tietoteknia\n
-            /snellmania\n
-            /canthia\n
-            /mediteknia\n
+        Botin komennot:
+            /start
+            /help
+            
+            Jyväskylä:
+            /piato
+            /maija
+            /lozzi
+            /belvedere
+            /syke
+            /tilia
+            /uno
+            /ylisto
+            /kvarkki
+            /rentukka
+            /novelli
+            /ilokivi
+            
+            Kuopio:
+            /tietoteknia
+            /snellmania
+            /canthia
+            /mediteknia
         """)
 
 if __name__ == '__main__':
