@@ -168,7 +168,32 @@ def start(update, context):
 
 def help(update, context):
     """Botin helpperi / komennot"""
-    update.message.reply_text('Botin komennot:\n/start\n/help\n/piato\n/maija\n/lozzi\n/belvedere\n/syke\n/tilia\n/uno\n/ylisto\n/kvarkki\n/rentukka\n/novelli\n/ilokivi')
+    update.message.reply_text(
+        """
+        Botin komennot:\n
+            /start\n
+            /help\n
+            \n
+            Jyväskylä:\n
+            /piato\n
+            /maija\n
+            /lozzi\n
+            /belvedere\n
+            /syke\n
+            /tilia\n
+            /uno\n
+            /ylisto\n
+            /kvarkki\n
+            /rentukka\n
+            /novelli\n
+            /ilokivi\n
+            \n
+            Kuopio:\n
+            /tietoteknia\n
+            /snellmania\n
+            /canthia\n
+            /mediteknia\n
+        """)
 
 if __name__ == '__main__':
     logger.info("Starting bot")
@@ -177,6 +202,7 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("start", start))
     updater.dispatcher.add_handler(CommandHandler("help", help))
 
+    # Jyväskylä
     updater.dispatcher.add_handler(CommandHandler("piato", piato))
     updater.dispatcher.add_handler(CommandHandler("maija", maija))
     updater.dispatcher.add_handler(CommandHandler("lozzi", lozzi))
@@ -191,5 +217,11 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("fiilu", fiilu))
 
     updater.dispatcher.add_handler(CommandHandler("ilokivi", ilokivi))
+
+    # Kuopio
+    updater.dispatcher.add_handler(CommandHandler("tietoteknia", tietoteknia))
+    updater.dispatcher.add_handler(CommandHandler("snellmania", snellmania))
+    updater.dispatcher.add_handler(CommandHandler("canthia", canthia))
+    updater.dispatcher.add_handler(CommandHandler("mediteknia", mediteknia))
 
     run(updater)
