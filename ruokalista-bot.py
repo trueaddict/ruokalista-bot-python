@@ -24,13 +24,13 @@ if mode == "dev":
     updater.start_polling()
     updater.idle()
 elif mode == "prod":
-    PORT = int(os.environ.get("PORT", "8443"))
+    PORT = int(os.environ.get("PORT", "443"))
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
     # Code from https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks#heroku
     updater.start_webhook(listen="0.0.0.0",
                             port=PORT,
-                            url_path=TOKEN)
-    updater.bot.set_webhook("https://{}.herokuapp.com/{}".format(HEROKU_APP_NAME, TOKEN))
+                            url_path=TOKEN,
+                            webhook_url="https://python-ruokalista-bot.herokuapp.com/"+TOKEN)
 else:
     logger.error("No MODE specified!")
     sys.exit(1)
