@@ -19,18 +19,21 @@ logger = logging.getLogger()
 #mode switch
 mode = os.getenv("MODE")
 TOKEN = os.getenv("TOKEN")
-updater = Updater(TOKEN)
+
 if mode == "dev":
-    updater.start_polling()
-    updater.idle()
+    def run(updater):
+        updater.start_polling()
+        updater.idle()
 elif mode == "prod":
-    PORT = int(os.environ.get("PORT", "443"))
-    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-    # Code from https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks#heroku
-    updater.start_webhook(listen="0.0.0.0",
-                            port=PORT,
-                            url_path=TOKEN,
-                            webhook_url="https://python-ruokalista-bot.herokuapp.com/"+TOKEN)
+    def run(updater):
+        PORT = int(os.environ.get("PORT", "443"))
+        HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
+        # Code from https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks#heroku
+        updater.start_webhook(listen="0.0.0.0",
+                                port=PORT,
+                                url_path=TOKEN,
+                                webhook_url="https://python-ruokalista-bot.herokuapp.com/"+TOKEN)
+        updater.idle()
 else:
     logger.error("No MODE specified!")
     sys.exit(1)
