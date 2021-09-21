@@ -92,6 +92,10 @@ def fiilu(update, context):
     viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=3364&language=fi')
     update.message.reply_text(viesti)
 
+def taide(update, context):
+    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0301&language=fi')
+    update.message.reply_text(viesti)
+
 # Kuopio
 
 def tietoteknia(update, context):
@@ -194,6 +198,7 @@ Jyväskylä:
 /kvarkki
 /rentukka
 /novelli
+/taide
 /ilokivi
 
 Kuopio:
@@ -223,6 +228,7 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("rentukka", rentukka))
     updater.dispatcher.add_handler(CommandHandler("novelli", novelli))
     updater.dispatcher.add_handler(CommandHandler("fiilu", fiilu))
+    updater.dispatcher.add_handler(CommandHandler("taide", taide))
 
     updater.dispatcher.add_handler(CommandHandler("ilokivi", ilokivi))
 
