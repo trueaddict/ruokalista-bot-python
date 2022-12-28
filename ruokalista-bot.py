@@ -5,7 +5,8 @@ import sys
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import ParseMode
+from telegram.ext import Updater, CommandHandler
 
 import json
 import requests
@@ -39,104 +40,107 @@ else:
     sys.exit(1)
 
 
+base_url_semma = 'https://www.semma.fi/modules/json/json/Index'
+base_url_compass = 'https://www.compass-group.fi/menuapi/feed/json'
+def createUrl(costNumber, base_url):
+    return base_url + '?costNumber={0}&language=fi'.format(costNumber)
 
 # Haetaan webistä ruokalista ja tulostetaan se konsolille
 
 # Jyväskylä
 
 def piato(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1408&language=fi')
-    update.message.reply_text(viesti)
+    # 1408
+    getRuokalista(update, createUrl(1408, base_url_semma))
 
 def maija(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1402&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1402, base_url_semma))
 
 def lozzi(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1401&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1401, base_url_semma))
 
 def belvedere(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1404&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1404, base_url_semma))
 
 def syke(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1405&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1405, base_url_semma))
 
 def tilia(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1413&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1413, base_url_semma))
 
 def uno(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1414&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1414, base_url_semma))
 
 def ylisto(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1403&language=fi')
-    update.message.reply_text(viesti)
+    getRuokalista(update, createUrl(1403, base_url_semma))
 
 def kvarkki(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=140301&language=fi')
-    update.message.reply_text(viesti)
+    # 140301
+    getRuokalista(update, createUrl(140301, base_url_semma))
 
 def rentukka(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1416&language=fi')
-    update.message.reply_text(viesti)
+    # 1416
+    getRuokalista(update, createUrl(1416, base_url_semma))
 
 def novelli(update, context):
-    viesti = getRuokalistaSemma('https://www.semma.fi/modules/json/json/Index?costNumber=1409&language=fi')
-    update.message.reply_text(viesti)
+    # 1409
+    getRuokalista(update, createUrl(1409, base_url_semma))
 
 def fiilu(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=3364&language=fi')
-    update.message.reply_text(viesti)
+    # 3364
+    getRuokalista(update, createUrl(3364, base_url_compass))
 
 def taide(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0301&language=fi')
-    update.message.reply_text(viesti)
+    # 0301
+    getRuokalista(update, createUrl('0301', base_url_compass))
 
 # Kuopio
 
 def tietoteknia(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0439&language=fi')
-    update.message.reply_text(viesti)
+    # 0439
+    getRuokalista(update, createUrl('0439', base_url_compass))
 
 def snellmania(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0437&language=fi')
-    update.message.reply_text(viesti)
+    # 0437
+    getRuokalista(update, createUrl('0437', base_url_compass))
 
 def canthia(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0436&language=fi')
-    update.message.reply_text(viesti)
+    # 0436
+    getRuokalista(update, createUrl('0436', base_url_compass))
 
 def mediteknia(update, context):
-    viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0442&language=fi')
-    update.message.reply_text(viesti)
+    # 0442
+    getRuokalista(update, createUrl('0442', base_url_compass))
+    
         
 # Vantaa
 def aviapolis(update, context):
-    viesti = getRuokalistaSemma('https://www.compass-group.fi/menuapi/feed/json?costNumber=3103&language=fi')
-    update.message.reply_text(viesti)
+    # 3103
+    getRuokalista(update, createUrl(3103, base_url_compass))
 
 
-def getRuokalistaSemma(url):
-    """Hakee ruokalistan Semman sivuilta
+def getRuokalista(update, url):
+    """Hakee ruokalistan Compass Groupin sivuilta
        return: Muotoiltu päivänruokalista"""
+    logger.info("User {0} fetched menu for {1}".format(update.effective_user['id'], url))
     # Hakee ja käsittelee json tiedoston
     htmlContent = requests.get(url, verify=True)
     jsonL = json.loads(htmlContent.text)
+    if jsonL["RestaurantName"] == None:
+        update.message.reply_text(jsonL['ErrorText'])
+        return
+    
     # Hakee halutun päivän
     today = datetime.now().isoformat().split('T')
     print(today)
     
     # Purkaa json-tiedostosta ruokalistan haluttuun muotoon
-    viesti_tele = ""
+    viesti = ""
 
     pvm_lista = today[0].split('-')
     today_tulostu = pvm_lista[2] + "." + pvm_lista[1] + "." + pvm_lista[0]
 
-    viesti_tele += jsonL["RestaurantName"] +" - " + today_tulostu +  "\n\n"
+    viesti += jsonL["RestaurantName"] +" - " + today_tulostu + ' - <a href="' + jsonL['RestaurantUrl'] +  '">Lisätiedot</a> \n\n'
 
     viikonruokalista = jsonL["MenusForDays"]
     for x in viikonruokalista:
@@ -147,12 +151,13 @@ def getRuokalistaSemma(url):
             for ruokalaji in menu:
                 comp = ruokalaji["Components"]
                 for txt in comp:
-                    viesti_tele += txt + "\n"
-                viesti_tele += "\n"
+                    viesti += txt + "\n"
+                viesti += "\n"
 
-    return viesti_tele
+    update.message.reply_text(viesti, parse_mode=ParseMode.HTML)
 
 def ilokivi(update, context):
+    logger.info("User {} fetched menu for Ilokivi".format(update.effective_user['id']))
     ilokivi_url = 'https://www.ilokivi.fi/ravintola/lounas'
     htmlContent = requests.get(ilokivi_url, verify=True).text
     html = BeautifulSoup(htmlContent, 'html.parser')
@@ -171,7 +176,11 @@ def ilokivi(update, context):
     today_tulostu = pvm_lista[2] + "." + pvm_lista[1] + "." + pvm_lista[0]
     
     update.message.reply_text("Ravintola Ilokivi - " + today_tulostu + "\n" + lunch.text)
-    
+
+
+def debug(update, context):
+    update.message.reply_text('[LINK](https://google.fi)', parse_mode=ParseMode.MARKDOWN_V2)
+
 
 def start(update, context):
     logger.info("User {} started bot".format(update.effective_user['id']))
@@ -211,6 +220,9 @@ Kuopio:
 /snellmania
 /canthia
 /mediteknia
+
+Vantaa:
+/aviapolis
 """)
 
 if __name__ == '__main__':
@@ -219,6 +231,7 @@ if __name__ == '__main__':
     
     updater.dispatcher.add_handler(CommandHandler("start", start))
     updater.dispatcher.add_handler(CommandHandler("help", help))
+    updater.dispatcher.add_handler(CommandHandler("debug", debug))
 
     # Jyväskylä
     updater.dispatcher.add_handler(CommandHandler("piato", piato))
@@ -242,5 +255,8 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("snellmania", snellmania))
     updater.dispatcher.add_handler(CommandHandler("canthia", canthia))
     updater.dispatcher.add_handler(CommandHandler("mediteknia", mediteknia))
+
+    # Vantaa
+    updater.dispatcher.add_handler(CommandHandler("aviapolis", aviapolis))
 
     run(updater)
