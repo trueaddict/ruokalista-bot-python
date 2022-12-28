@@ -114,6 +114,11 @@ def mediteknia(update, context):
     viesti = getRuokalistaSemma('https://www.foodandco.fi/modules/json/json/Index?costNumber=0442&language=fi')
     update.message.reply_text(viesti)
         
+# Vantaa
+def aviapolis(update, context):
+    viesti = getRuokalistaSemma('https://www.compass-group.fi/menuapi/feed/json?costNumber=3103&language=fi')
+    update.message.reply_text(viesti)
+
 
 def getRuokalistaSemma(url):
     """Hakee ruokalistan Semman sivuilta
